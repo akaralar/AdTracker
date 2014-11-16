@@ -7,27 +7,46 @@
 //
 
 #import "ViewController.h"
+#import "AdInjector.h"
+
+static NSString * const kAdURL = @"http://media.mobworkz.com/adserver/seamless-300x250/";
+static NSString * const kAdTrackingURL = @"http://tracker.seamlessapi.com/track/imp/ahmetKaralar";
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic) UITableView *tableView;
+@property (nonatomic) AdInjector *injector;
+
+- (void)injectAdAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-
     [self.tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:NSStringFromClass([UITableViewCell class])];
-
     [self.view addSubview:self.tableView];
+
+    self.injector = [[AdInjector alloc] initWithTableView:self.tableView];
 }
+
+#pragma mark - Helpers
+
+- (void)injectAdAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.injector injectAdWithURL:[NSURL URLWithString:kAdURL]
+                       trackingURL:[NSURL URLWithString:kAdTrackingURL]
+                       atIndexPath:indexPath];
+}
+
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -40,10 +59,11 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier
                                                             forIndexPath:indexPath];
 
-    cell.textLabel.text = @"This cell contains amazing content";
+    cell.textLabel.text = @(indexPath.row + 1).stringValue;
 
     return cell;
 }
+
 
 
 @end
