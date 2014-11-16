@@ -20,21 +20,6 @@ PODS:
   - AFNetworking/UIKit (2.4.1):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
-  - BlocksKit (2.2.5):
-    - BlocksKit/All
-  - BlocksKit/All (2.2.5):
-    - BlocksKit/Core
-    - BlocksKit/DynamicDelegate
-    - BlocksKit/MessageUI
-    - BlocksKit/UIKit
-  - BlocksKit/Core (2.2.5)
-  - BlocksKit/DynamicDelegate (2.2.5)
-  - BlocksKit/MessageUI (2.2.5):
-    - BlocksKit/Core
-    - BlocksKit/DynamicDelegate
-  - BlocksKit/UIKit (2.2.5):
-    - BlocksKit/Core
-    - BlocksKit/DynamicDelegate
   - Bolts (1.1.3)
   - Mantle (1.5.1):
     - Mantle/extobjc
@@ -43,14 +28,12 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
-  - BlocksKit
   - Bolts
   - Mantle
   - Masonry
 
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
-  BlocksKit: 4439e7f30a9f90743462ca63545a15c1f4304cef
   Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
   Mantle: d7c5ac734579ec751c58fecbf56189853056c58c
   Masonry: 35368c2ca9577ca87722c12fc52c4bad9b1c1516
