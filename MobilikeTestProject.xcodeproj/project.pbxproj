@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		577C862F1A18E27700F2A69D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 577C862E1A18E27700F2A69D /* main.m */; };
+		577C86321A18E27700F2A69D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 577C86311A18E27700F2A69D /* AppDelegate.m */; };
+		577C86351A18E27700F2A69D /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 577C86341A18E27700F2A69D /* ViewController.m */; };
+		577C86381A18E27700F2A69D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 577C86361A18E27700F2A69D /* Main.storyboard */; };
+		577C863A1A18E27700F2A69D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 577C86391A18E27700F2A69D /* Images.xcassets */; };
+		577C863D1A18E27700F2A69D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 577C863B1A18E27700F2A69D /* LaunchScreen.xib */; };
+		577C86491A18E27700F2A69D /* MobilikeTestProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 577C86481A18E27700F2A69D /* MobilikeTestProjectTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		577C86431A18E27700F2A69D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 577C86211A18E27700F2A69D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 577C86281A18E27700F2A69D;
+			remoteInfo = MobilikeTestProject;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		577C86291A18E27700F2A69D /* MobilikeTestProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobilikeTestProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		577C862D1A18E27700F2A69D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		577C862E1A18E27700F2A69D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		577C86301A18E27700F2A69D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		577C86311A18E27700F2A69D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		577C86331A18E27700F2A69D /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		577C86341A18E27700F2A69D /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		577C86371A18E27700F2A69D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		577C86391A18E27700F2A69D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		577C863C1A18E27700F2A69D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		577C86421A18E27700F2A69D /* MobilikeTestProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobilikeTestProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		577C86471A18E27700F2A69D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		577C86481A18E27700F2A69D /* MobilikeTestProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MobilikeTestProjectTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		577C86261A18E27700F2A69D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		577C863F1A18E27700F2A69D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		577C86201A18E27700F2A69D = {
+			isa = PBXGroup;
+			children = (
+				577C862B1A18E27700F2A69D /* MobilikeTestProject */,
+				577C86451A18E27700F2A69D /* MobilikeTestProjectTests */,
+				577C862A1A18E27700F2A69D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		577C862A1A18E27700F2A69D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				577C86291A18E27700F2A69D /* MobilikeTestProject.app */,
+				577C86421A18E27700F2A69D /* MobilikeTestProjectTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		577C862B1A18E27700F2A69D /* MobilikeTestProject */ = {
+			isa = PBXGroup;
+			children = (
+				577C86301A18E27700F2A69D /* AppDelegate.h */,
+				577C86311A18E27700F2A69D /* AppDelegate.m */,
+				577C86331A18E27700F2A69D /* ViewController.h */,
+				577C86341A18E27700F2A69D /* ViewController.m */,
+				577C86361A18E27700F2A69D /* Main.storyboard */,
+				577C86391A18E27700F2A69D /* Images.xcassets */,
+				577C863B1A18E27700F2A69D /* LaunchScreen.xib */,
+				577C862C1A18E27700F2A69D /* Supporting Files */,
+			);
+			path = MobilikeTestProject;
+			sourceTree = "<group>";
+		};
+		577C862C1A18E27700F2A69D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				577C862D1A18E27700F2A69D /* Info.plist */,
+				577C862E1A18E27700F2A69D /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		577C86451A18E27700F2A69D /* MobilikeTestProjectTests */ = {
+			isa = PBXGroup;
+			children = (
+				577C86481A18E27700F2A69D /* MobilikeTestProjectTests.m */,
+				577C86461A18E27700F2A69D /* Supporting Files */,
+			);
+			path = MobilikeTestProjectTests;
+			sourceTree = "<group>";
+		};
+		577C86461A18E27700F2A69D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				577C86471A18E27700F2A69D /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		577C86281A18E27700F2A69D /* MobilikeTestProject */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 577C864C1A18E27700F2A69D /* Build configuration list for PBXNativeTarget "MobilikeTestProject" */;
+			buildPhases = (
+				577C86251A18E27700F2A69D /* Sources */,
+				577C86261A18E27700F2A69D /* Frameworks */,
+				577C86271A18E27700F2A69D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MobilikeTestProject;
+			productName = MobilikeTestProject;
+			productReference = 577C86291A18E27700F2A69D /* MobilikeTestProject.app */;
+			productType = "com.apple.product-type.application";
+		};
+		577C86411A18E27700F2A69D /* MobilikeTestProjectTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 577C864F1A18E27700F2A69D /* Build configuration list for PBXNativeTarget "MobilikeTestProjectTests" */;
+			buildPhases = (
+				577C863E1A18E27700F2A69D /* Sources */,
+				577C863F1A18E27700F2A69D /* Frameworks */,
+				577C86401A18E27700F2A69D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				577C86441A18E27700F2A69D /* PBXTargetDependency */,
+			);
+			name = MobilikeTestProjectTests;
+			productName = MobilikeTestProjectTests;
+			productReference = 577C86421A18E27700F2A69D /* MobilikeTestProjectTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		577C86211A18E27700F2A69D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Ahmet Karalar";
+				TargetAttributes = {
+					577C86281A18E27700F2A69D = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					577C86411A18E27700F2A69D = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 577C86281A18E27700F2A69D;
+					};
+				};
+			};
+			buildConfigurationList = 577C86241A18E27700F2A69D /* Build configuration list for PBXProject "MobilikeTestProject" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 577C86201A18E27700F2A69D;
+			productRefGroup = 577C862A1A18E27700F2A69D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				577C86281A18E27700F2A69D /* MobilikeTestProject */,
+				577C86411A18E27700F2A69D /* MobilikeTestProjectTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		577C86271A18E27700F2A69D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				577C86381A18E27700F2A69D /* Main.storyboard in Resources */,
+				577C863D1A18E27700F2A69D /* LaunchScreen.xib in Resources */,
+				577C863A1A18E27700F2A69D /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		577C86401A18E27700F2A69D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		577C86251A18E27700F2A69D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				577C86351A18E27700F2A69D /* ViewController.m in Sources */,
+				577C86321A18E27700F2A69D /* AppDelegate.m in Sources */,
+				577C862F1A18E27700F2A69D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		577C863E1A18E27700F2A69D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				577C86491A18E27700F2A69D /* MobilikeTestProjectTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		577C86441A18E27700F2A69D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 577C86281A18E27700F2A69D /* MobilikeTestProject */;
+			targetProxy = 577C86431A18E27700F2A69D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		577C86361A18E27700F2A69D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				577C86371A18E27700F2A69D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		577C863B1A18E27700F2A69D /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				577C863C1A18E27700F2A69D /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		577C864A1A18E27700F2A69D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		577C864B1A18E27700F2A69D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		577C864D1A18E27700F2A69D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MobilikeTestProject/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		577C864E1A18E27700F2A69D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MobilikeTestProject/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		577C86501A18E27700F2A69D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MobilikeTestProjectTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobilikeTestProject.app/MobilikeTestProject";
+			};
+			name = Debug;
+		};
+		577C86511A18E27700F2A69D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = MobilikeTestProjectTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MobilikeTestProject.app/MobilikeTestProject";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		577C86241A18E27700F2A69D /* Build configuration list for PBXProject "MobilikeTestProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				577C864A1A18E27700F2A69D /* Debug */,
+				577C864B1A18E27700F2A69D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		577C864C1A18E27700F2A69D /* Build configuration list for PBXNativeTarget "MobilikeTestProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				577C864D1A18E27700F2A69D /* Debug */,
+				577C864E1A18E27700F2A69D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		577C864F1A18E27700F2A69D /* Build configuration list for PBXNativeTarget "MobilikeTestProjectTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				577C86501A18E27700F2A69D /* Debug */,
+				577C86511A18E27700F2A69D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 577C86211A18E27700F2A69D /* Project object */;
+}
