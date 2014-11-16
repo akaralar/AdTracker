@@ -11,6 +11,7 @@
 
 static NSString * const kAdURL = @"http://media.mobworkz.com/adserver/seamless-300x250/";
 static NSString * const kAdTrackingURL = @"http://tracker.seamlessapi.com/track/imp/ahmetKaralar";
+static const NSInteger kAdCellCount = 25;
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -35,6 +36,12 @@ static NSString * const kAdTrackingURL = @"http://tracker.seamlessapi.com/track/
     [self.view addSubview:self.tableView];
 
     self.injector = [[AdInjector alloc] initWithTableView:self.tableView];
+
+    for (NSInteger i = 0; i < kAdCellCount; i++) {
+
+        NSIndexPath *path = [NSIndexPath indexPathForRow:(i * 4 + 2) inSection:0];
+        [self injectAdAtIndexPath:path];
+    }
 }
 
 #pragma mark - Helpers
@@ -59,11 +66,12 @@ static NSString * const kAdTrackingURL = @"http://tracker.seamlessapi.com/track/
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier
                                                             forIndexPath:indexPath];
 
-    cell.textLabel.text = @(indexPath.row + 1).stringValue;
+    cell.textLabel.text = @(indexPath.row).stringValue;
 
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
 
 
 @end

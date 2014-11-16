@@ -15,6 +15,8 @@
 		577C86491A18E27700F2A69D /* MobilikeTestProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 577C86481A18E27700F2A69D /* MobilikeTestProjectTests.m */; };
 		579E3C841A18EBC40066905A /* AdInjector.m in Sources */ = {isa = PBXBuildFile; fileRef = 579E3C831A18EBC40066905A /* AdInjector.m */; };
 		579E3C871A18EBE20066905A /* TableViewAd.m in Sources */ = {isa = PBXBuildFile; fileRef = 579E3C861A18EBE20066905A /* TableViewAd.m */; };
+		579E3C8A1A1914530066905A /* AdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 579E3C891A1914530066905A /* AdCell.m */; };
+		579E3C8C1A191BB40066905A /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 579E3C8B1A191BB40066905A /* WebKit.framework */; };
 		58F1AAC647A0424D028B6EB7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 76CDAE431F84B9A1C0BF8580 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +47,9 @@
 		579E3C831A18EBC40066905A /* AdInjector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdInjector.m; sourceTree = "<group>"; };
 		579E3C851A18EBE20066905A /* TableViewAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewAd.h; sourceTree = "<group>"; };
 		579E3C861A18EBE20066905A /* TableViewAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewAd.m; sourceTree = "<group>"; };
+		579E3C881A1914530066905A /* AdCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdCell.h; sourceTree = "<group>"; };
+		579E3C891A1914530066905A /* AdCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdCell.m; sourceTree = "<group>"; };
+		579E3C8B1A191BB40066905A /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		76CDAE431F84B9A1C0BF8580 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		870F3408EA5E0CCA354CD638 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F25ADB252B422F7CFCEC9B4F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -55,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				579E3C8C1A191BB40066905A /* WebKit.framework in Frameworks */,
 				58F1AAC647A0424D028B6EB7 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,6 +152,8 @@
 				579E3C831A18EBC40066905A /* AdInjector.m */,
 				579E3C851A18EBE20066905A /* TableViewAd.h */,
 				579E3C861A18EBE20066905A /* TableViewAd.m */,
+				579E3C881A1914530066905A /* AdCell.h */,
+				579E3C891A1914530066905A /* AdCell.m */,
 			);
 			path = AdInjector;
 			sourceTree = "<group>";
@@ -153,6 +161,7 @@
 		A1555E4C656534363C443A54 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				579E3C8B1A191BB40066905A /* WebKit.framework */,
 				76CDAE431F84B9A1C0BF8580 /* libPods.a */,
 			);
 			name = Frameworks;
@@ -294,6 +303,7 @@
 			files = (
 				577C86351A18E27700F2A69D /* ViewController.m in Sources */,
 				577C86321A18E27700F2A69D /* AppDelegate.m in Sources */,
+				579E3C8A1A1914530066905A /* AdCell.m in Sources */,
 				579E3C871A18EBE20066905A /* TableViewAd.m in Sources */,
 				579E3C841A18EBC40066905A /* AdInjector.m in Sources */,
 				577C862F1A18E27700F2A69D /* main.m in Sources */,

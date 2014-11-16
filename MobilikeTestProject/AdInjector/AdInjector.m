@@ -8,17 +8,30 @@
 
 #import "AdInjector.h"
 #import "TableViewAd.h"
+#import "AdCell.h"
 
-@interface AdInjector () <UITableViewDataSource, UITableViewDelegate>
+static NSString * const kAdCellIdentifier = @"AdCell";
+
+@interface AdInjector () <UITableViewDataSource, UITableViewDelegate, UIWebViewDelegate>
 
 @property (nonatomic, weak) UITableView *tableView;
 @property (nonatomic, weak) id<UITableViewDataSource> tableViewDataSource;
 @property (nonatomic, weak) id<UITableViewDelegate> tableViewDelegate;
 
 @property (nonatomic) NSMutableArray *ads;
+@property (nonatomic) NSMutableSet *trackInProgressAdIDs;
 
 - (NSNumber *)createIndexedAdIdentifier;
-- (NSIndexPath *)adjustedIndexPathForOriginalIndexPath:(NSIndexPath *)indexPath;
+- (NSIndexPath *)adjustedContentIndexPathForOriginalContentIndexPath:(NSIndexPath *)indexPath;
+- (NSIndexPath *)adjustedAdIndexPathForOriginalAdIndexPath:(NSIndexPath *)indexPath;
+- (NSIndexPath *)originalContentIndexPathForIndexPath:(NSIndexPath *)indexPath;
+- (BOOL)shouldInjectAdAtIndexPath:(NSIndexPath *)indexPath;
+- (TableViewAd *)adForIndexPath:(NSIndexPath *)indexPath;
+- (void)checkVisibilityOfAdCell:(AdCell *)cell inView:(UIView *)view;
+
+- (NSInteger)numberOfAdsInSection:(NSInteger)section;
+
+- (void)trackAd:(TableViewAd *)ad;
 
 @end
 
@@ -40,6 +53,10 @@
     _tableView.delegate = self;
 
     _ads = [NSMutableArray array];
+    _trackInProgressAdIDs = [NSMutableSet set];
+
+    [tableView registerClass:[AdCell class]
+      forCellReuseIdentifier:kAdCellIdentifier];
 
     return self;
 }
@@ -96,7 +113,7 @@
     return identifier;
 }
 
-- (NSIndexPath *)adjustedIndexPathForOriginalIndexPath:(NSIndexPath *)indexPath
+- (NSIndexPath *)adjustedContentIndexPathForOriginalContentIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger numberOfAdsBeforeOriginalIndexPath = 0;
 
@@ -113,56 +130,217 @@
                               inSection:indexPath.section];
 }
 
+- (NSIndexPath *)adjustedAdIndexPathForOriginalAdIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger numberOfAdsBeforeOriginalIndexPath = 0;
+
+    for (TableViewAd *ad in self.ads) {
+
+        if (ad.indexPath.section == indexPath.section &&
+            ad.indexPath.row < indexPath.row) {
+
+            numberOfAdsBeforeOriginalIndexPath++;
+        }
+    }
+
+    return [NSIndexPath indexPathForRow:indexPath.row + numberOfAdsBeforeOriginalIndexPath
+                              inSection:indexPath.section];
+}
+
+- (BOOL)shouldInjectAdAtIndexPath:(NSIndexPath *)indexPath
+{
+    for (TableViewAd *ad in self.ads) {
+
+        NSIndexPath *adjustedAdPath = [self adjustedAdIndexPathForOriginalAdIndexPath:ad.indexPath];
+
+        if (adjustedAdPath.section == indexPath.section &&
+            adjustedAdPath.row == indexPath.row) {
+
+            return YES;
+        }
+    }
+
+    return NO;
+}
+
+- (NSInteger)numberOfAdsInSection:(NSInteger)section
+{
+    NSInteger numberOfAdsInSection = 0;
+
+    for (TableViewAd *ad in self.ads) {
+
+        if (ad.indexPath.section == section) {
+
+            numberOfAdsInSection++;
+        }
+    }
+
+    return numberOfAdsInSection;
+}
+
+- (NSIndexPath *)originalContentIndexPathForIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger numberOfAdsBefore = 0;
+
+    for (TableViewAd *ad in self.ads) {
+
+        NSIndexPath *adjusted = [self adjustedAdIndexPathForOriginalAdIndexPath:ad.indexPath];
+        if (adjusted.section == indexPath.section &&
+            adjusted.row < indexPath.row) {
+
+            numberOfAdsBefore++;
+        }
+    }
+
+    return [NSIndexPath indexPathForRow:indexPath.row - numberOfAdsBefore
+                              inSection:indexPath.section];
+
+}
+
+- (TableViewAd *)adForIndexPath:(NSIndexPath *)indexPath
+{
+    for (TableViewAd *ad in self.ads) {
+
+        NSIndexPath *adjustedAdPath = [self adjustedAdIndexPathForOriginalAdIndexPath:ad.indexPath];
+
+        if (adjustedAdPath.section == indexPath.section &&
+            adjustedAdPath.row == indexPath.row) {
+
+            return ad;
+        }
+    }
+    
+    return nil;
+}
+
+- (void)checkVisibilityOfAdCell:(AdCell *)cell inView:(UIView *)view {
+
+    CGRect topHalfRect, bottomHalfRect;
+
+    CGRectDivide(cell.frame, &topHalfRect, &bottomHalfRect, cell.frame.size.height / 2, CGRectMinYEdge);
+    CGRect cellRect = [view convertRect:topHalfRect toView:view.superview];
+
+    if (CGRectContainsRect(view.frame, cellRect)) {
+
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        TableViewAd *ad = [self adForIndexPath:indexPath];
+
+        [self trackAd:ad];
+    }
+}
+
+- (void)trackAd:(TableViewAd *)ad
+{
+    if (!ad.tracked &&
+        ![self.trackInProgressAdIDs containsObject:ad.indexedAdIdentifier]) {
+
+        [self.trackInProgressAdIDs addObject:ad.indexedAdIdentifier];
+
+        NSURLRequest *request = [NSURLRequest requestWithURL:ad.trackingURL];
+        NSURLSession *session = [NSURLSession sharedSession];
+        NSLog(@"starting to track ad with request: %@, ad id: %@", request, ad.indexedAdIdentifier);
+        [[session dataTaskWithRequest:request
+                    completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                        NSLog(@"finished tracking ad with request: %@, ad id: %@", request, ad.indexedAdIdentifier);
+                        ad.tracked = YES;
+                        [self.trackInProgressAdIDs removeObject:ad.indexedAdIdentifier];
+                    }] resume];
+    }
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.tableViewDataSource tableView:tableView numberOfRowsInSection:section];
-}
+    NSInteger originalRows = [self.tableViewDataSource tableView:tableView
+                                           numberOfRowsInSection:section];
+    NSInteger adsInSection = [self numberOfAdsInSection:section];
+    NSInteger rows = originalRows + adsInSection;
 
-// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
+    return rows;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.tableViewDataSource tableView:tableView cellForRowAtIndexPath:indexPath];
+    UITableViewCell *cell;
+
+    if ([self shouldInjectAdAtIndexPath:indexPath]) {
+
+        AdCell *adCell = [tableView dequeueReusableCellWithIdentifier:kAdCellIdentifier
+                                                         forIndexPath:indexPath];
+        CGRect frame = adCell.contentView.bounds;
+        frame.size.width = 300;
+        adCell.webView.frame = frame;
+        adCell.webView.center = adCell.contentView.center;
+
+        TableViewAd *ad = [self adForIndexPath:indexPath];
+        NSURLRequest *request = [NSURLRequest requestWithURL:ad.adURL];
+        [adCell.webView loadRequest:request];
+
+        cell = adCell;
+    }
+    else {
+        NSIndexPath *originalIndexPath = [self originalContentIndexPathForIndexPath:indexPath];
+
+        cell = [self.tableViewDataSource tableView:tableView
+                             cellForRowAtIndexPath:originalIndexPath];
+    }
+
+    return cell;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.tableViewDataSource numberOfSectionsInTableView:tableView];
+    NSInteger sections = 1;
+    if ([self.tableViewDataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
+
+        sections = [self.tableViewDataSource numberOfSectionsInTableView:tableView];
+    }
+
+    return sections;
 }
 
-//
-//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section;    // fixed font style. use custom view (UILabel) if you want something different
-//- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section;
-//
-//// Editing
-//
-//// Individual rows can opt out of having the -editing property set for them. If not implemented, all rows are assumed to be editable.
-//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath;
-//
-//// Moving/reordering
-//
-//// Allows the reorder accessory view to optionally be shown for a particular row. By default, the reorder control will be shown only if the datasource implements -tableView:moveRowAtIndexPath:toIndexPath:
-//- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath;
-//
-//// Index
-//
-//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView;                                                    // return list of section titles to display in section index view (e.g. "ABCD...Z#")
-//- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index;  // tell table which section corresponds to section title/index (e.g. "B",1))
-//
-//// Data manipulation - insert and delete support
-//
-//// After a row has the minus or plus button invoked (based on the UITableViewCellEditingStyle for the cell), the dataSource must commit the change
-//// Not called for edit actions using UITableViewRowAction - the action's handler will be invoked instead
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath;
-//
-//// Data manipulation - reorder / moving support
-//
-//- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath;
-
 #pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self shouldInjectAdAtIndexPath:indexPath]) {
+
+        return 250;
+    }
+    else {
+
+        if ([self.tableViewDelegate
+             respondsToSelector:@selector(tableView:heightForRowAtIndexPath:)]) {
+
+            return [self.tableViewDelegate tableView:tableView heightForRowAtIndexPath:indexPath];
+        }
+        else {
+
+            // default
+            return 45;
+        }
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if ([self.tableViewDelegate respondsToSelector:@selector(scrollViewDidScroll:)]) {
+
+        [self.tableViewDelegate scrollViewDidScroll:scrollView];
+    }
+
+    for (TableViewAd *ad in self.ads) {
+
+        NSIndexPath *adjusted = [self adjustedAdIndexPathForOriginalAdIndexPath:ad.indexPath];
+        AdCell *cell = (AdCell *)[self.tableView cellForRowAtIndexPath:adjusted];
+
+        if (cell) {
+            [self checkVisibilityOfAdCell:cell inView:scrollView];
+        }
+    }
+}
 
 @end
 
